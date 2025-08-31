@@ -14,4 +14,8 @@
     <None Include="C:\Trainings\TurboCart.Net\src\Services\Catalog\NexCommerce.Catalog.Core\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>
