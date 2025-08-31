@@ -1,4 +1,6 @@
 ﻿namespace NexCommerce.Catalog.Core.Entities;
+using NexCommerce.Catalog.Core.Exceptions;
+
 public class Category : EntityBase
 {
     public string Name { get; private set; } = string.Empty;
@@ -24,7 +26,7 @@ public class Category : EntityBase
     public void SetDescription(string? description)
     {
         if (description?.Length > 500)
-            throw new ArgumentException("Description cannot exceed 500 characters");
+            throw new CategoryDescriptionTooLongException();
 
         Description = description;
     }
@@ -38,7 +40,7 @@ public class Category : EntityBase
     public void Deactivate()
     {
         if (HasActiveProducts())
-            throw new InvalidOperationException("Cannot deactivate category with active products");
+            throw new CategoryDeactivateWithActiveProductsException();
 
         IsActive = false;
         MarkAsModified("System");
